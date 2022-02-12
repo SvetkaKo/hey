@@ -1,26 +1,52 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="row d-flex justify-content-center">
+    <div class="col-md-6 mt-3">
+      <div class="card">
+        <div class="card-header">Newsletter</div>
+        <div class="card-body">
+          <form @submit.prevent="submit">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Name"
+                :value="newsletterName"
+                @input="newsletterName"
+              />
+            </div>
+            <div class="form-group">
+              <email-input v-model="newsletterEmail" />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import EmailInput from './components/EmailInput.vue';
 
 export default {
+  components: { EmailInput },
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+
+  data() {
+    return {
+      newsletterName: '',
+      newsletterEmail: '',
+    };
+  },
+  methods: {
+    submit() {
+      console.log('Newletter Submitted', {
+        name: this.newsletterName,
+        email: this.newsletterEmail,
+      });
+    },
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style src="bootstrap/dist/css/bootstrap.css"></style>
