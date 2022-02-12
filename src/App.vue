@@ -6,16 +6,10 @@
         <div class="card-body">
           <form @submit.prevent="submit">
             <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Name"
-                :value="newsletterName"
-                @input="newsletterName"
-              />
+              <input type="text" class="form-control" placeholder="Name" v-model="newsletterName" />
             </div>
             <div class="form-group">
-              <email-input v-model="newsletterEmail" />
+              <email-input v-model:email="newsletterEmail" />
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -29,9 +23,8 @@
 import EmailInput from './components/EmailInput.vue';
 
 export default {
-  components: { EmailInput },
   name: 'App',
-
+  components: { EmailInput },
   data() {
     return {
       newsletterName: '',
